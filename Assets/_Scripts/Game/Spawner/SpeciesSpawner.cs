@@ -43,7 +43,7 @@ namespace _Scripts.Game.Spawner
             
             m_bounds = new Bounds2D(transform.position, spawnBoundsSize);
             
-            // App.spawnerManager.AddSpawner(this);
+            GameManager.SpawnerManager.AddSpawner(this);
             
             // Check for loading prefabs here.
             // Most spawned things are referenced directly in m_spawnObject, but they can now be loaded as resources, by name.

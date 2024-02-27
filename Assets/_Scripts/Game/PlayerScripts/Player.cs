@@ -19,7 +19,7 @@ namespace _Scripts.PlayerScripts
 
         void Start()
         {
-            GameManager.Instance.Player = this;
+            App.Instance.Player = this;
             
             m_movementControl = GetComponent<FishMovementControl>();
             m_movementControl.SetInitialRotation();
@@ -38,7 +38,7 @@ namespace _Scripts.PlayerScripts
                 return;
             }
 
-            Vector3 desiredVel = new Vector3(GameManager.Instance.GameInput.tiltX, GameManager.Instance.GameInput.tiltY,
+            Vector3 desiredVel = new Vector3(App.Instance.GameInput.tiltX, App.Instance.GameInput.tiltY,
                 0f).normalized;
 
             m_movementControl.MoveTowardsVelocity(desiredVel);

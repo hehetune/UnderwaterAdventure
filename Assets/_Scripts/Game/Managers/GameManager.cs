@@ -1,32 +1,40 @@
-﻿using _Scripts.PlayerScripts;
+﻿using _Scripts.Game.Managers;
 using UnityEngine;
 
 namespace _Scripts.Game
 {
     public class GameManager : MonoBehaviour
     {
-        private static GameManager _instance;
-
-        public static GameManager Instance => _instance;
+        // Singleton
+        private static GameManager m_instance = null;
+        public static GameManager Instance => m_instance;
         
-        public GameInput GameInput;
-
-        public Player Player;
-
-        private void Awake()
-        {
-            if (Instance != null)
+        // Settings
+        private static bool m_bPaused = false;
+        public static bool paused
+        { 
+            get 
+            { 
+                return m_bPaused; 
+            } 
+            private set
             {
-                Destroy(this.gameObject);
-                return;
-            }
+                // The game goes nuts if you pause while mega breaching!
+                // if(value && App.gameLogic != null)
+                // {
+                //     GameLogic.StopMegaBreach();
+                // }
 
-            _instance = this;
-
-            Player = FindObjectOfType<Player>();
+                m_bPaused = value;
+                Time.timeScale = m_bPaused ? 0.0f : 1.0f;
+            } 
         }
-
         
+        public GameObject				m_spawnerManagerPrefab = null;
+        
+        private static SpawnerManager	m_spawnerManager = null;
+
+        public static SpawnerManager SpawnerManager => m_spawnerManager;
 
     }
 }
