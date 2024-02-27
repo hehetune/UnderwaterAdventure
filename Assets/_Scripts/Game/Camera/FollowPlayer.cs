@@ -20,9 +20,9 @@ namespace _Scripts.Game.Camera
 
         private void Update()
         {
-            m_desiredPosition = new Vector3(m_playerPosition.x, m_playerPosition.y, 0f) + offset;
+            m_desiredPosition = new Vector3(m_playerPosition.x, m_playerPosition.y, 0f);
             m_distanceToPlayer = (m_playerPosition - m_desiredPosition).magnitude;
-            transform.position = Vector3.Lerp(transform.position, m_desiredPosition,
+            transform.position = Vector3.Lerp(transform.position, m_desiredPosition + offset,
                 Time.deltaTime * (m_distanceToPlayer >= 2f ? 11f : 4f));
         }
     }
