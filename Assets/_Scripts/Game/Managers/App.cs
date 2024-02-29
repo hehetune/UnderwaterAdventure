@@ -12,6 +12,29 @@ namespace _Scripts.Game
         public GameInput GameInput;
 
         public Player Player;
+        
+        // Settings
+        private static bool m_bPaused = false;
+        public static bool paused
+        { 
+            get 
+            { 
+                return m_bPaused; 
+            } 
+            private set 
+            { 
+                // The game goes nuts if you pause while mega breaching!
+                // if(value && App.gameLogic != null)
+                // {
+                //     GameLogic.StopMegaBreach();
+                // }
+
+                m_bPaused = value; 
+                if( m_bPaused )
+                    Time.timeScale = 0.0f; 
+                else Time.timeScale = 1.0f;
+            } 
+        }
 
         private void Awake()
         {
